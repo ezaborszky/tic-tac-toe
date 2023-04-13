@@ -308,16 +308,35 @@ const Computer = (() => {
 
     function ComputerRandomMove(){
          
-        for(let i = 0; i < 3; i++) {
-            for(let j =0; j < 3; j++){
+        
+
+            if(Table.currentTurn() > 4) {
                 
-                if(Table.value(i,j)!== "x" && Table.value(i,j) !== "o"){
+                for(let i = 0; i < 3; i++) {
+                    for(let j =0; j < 3; j++){
+                        if(Table.value(i,j)!== "x" && Table.value(i,j) !== "o"){
+                        Table.setO(i,j);
+                        return 0;}
+                    }}
+
+            } else {
+
+            for (let x = 0; x < 1; x){            
+               let i = (Math.floor(Math.random() * 3))
+               let j = (Math.floor(Math.random() * 3))
+               
+               if(Table.value(i,j)!== "x" && Table.value(i,j) !== "o"){
                     Table.setO(i,j);
+                    x = 2;
                     return 0;
-                }
-            }
-        }
+                    
+                }}
+            
+
     }
+        }
+        
+    
 
     return {
         checkTerminal : () => {return ifTerminal()},
